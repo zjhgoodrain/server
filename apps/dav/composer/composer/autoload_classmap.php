@@ -150,6 +150,8 @@ return array(
     'OCA\\DAV\\Migration\\Version1004Date20170926103422' => $baseDir . '/../lib/Migration/Version1004Date20170926103422.php',
     'OCA\\DAV\\Migration\\Version1005Date20180413093149' => $baseDir . '/../lib/Migration/Version1005Date20180413093149.php',
     'OCA\\DAV\\Migration\\Version1005Date20180530124431' => $baseDir . '/../lib/Migration/Version1005Date20180530124431.php',
+    'OCA\\DAV\\Provisioning\\Apple\\AppleProvisioningNode' => $baseDir . '/../lib/Provisioning/Apple/AppleProvisioningNode.php',
+    'OCA\\DAV\\Provisioning\\Apple\\AppleProvisioningPlugin' => $baseDir . '/../lib/Provisioning/Apple/AppleProvisioningPlugin.php',
     'OCA\\DAV\\RootCollection' => $baseDir . '/../lib/RootCollection.php',
     'OCA\\DAV\\Server' => $baseDir . '/../lib/Server.php',
     'OCA\\DAV\\Settings\\CalDAVSettings' => $baseDir . '/../lib/Settings/CalDAVSettings.php',
