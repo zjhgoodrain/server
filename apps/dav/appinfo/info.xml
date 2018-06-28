@@ -5,7 +5,7 @@
 	<name>WebDAV</name>
 	<summary>WebDAV endpoint</summary>
 	<description>WebDAV endpoint</description>
-	<version>1.5.4</version>
+	<version>1.5.5</version>
 	<licence>agpl</licence>
 	<author>owncloud.org</author>
 	<namespace>DAV</namespace>
@@ -29,6 +29,7 @@
 			<step>OCA\DAV\Migration\FixBirthdayCalendarComponent</step>
 			<step>OCA\DAV\Migration\CalDAVRemoveEmptyValue</step>
 			<step>OCA\DAV\Migration\BuildCalendarSearchIndex</step>
+			<step>OCA\DAV\Migration\RefreshWebcalJobRegistrar</step>
 		</post-migration>
 	</repair-steps>
 

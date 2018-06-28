@@ -43,6 +43,9 @@ class CalendarHome extends \Sabre\CalDAV\CalendarHome {
 	/** @var \OCP\IConfig */
 	private $config;
 
+	/** @var bool */
+	private $returnCachedSubscriptions=false;
+
 	public function __construct(BackendInterface $caldavBackend, $principalInfo) {
 		parent::__construct($caldavBackend, $principalInfo);
 		$this->l10n = \OC::$server->getL10N('dav');
@@ -92,7 +95,11 @@ class CalendarHome extends \Sabre\CalDAV\CalendarHome {
 		// If the backend supports subscriptions, we'll add those as well,
 		if ($this->caldavBackend instanceof SubscriptionSupport) {
 			foreach ($this->caldavBackend->getSubscriptionsForUser($this->principalInfo['uri']) as $subscription) {
-				$objects[] = new Subscription($this->caldavBackend, $subscription);
+				if ($this->returnCachedSubscriptions) {
+					$objects[] = new CachedSubscription($this->caldavBackend, $subscription);
+				} else {
+					$objects[] = new Subscription($this->caldavBackend, $subscription);
+				}
 			}
 		}
 
@@ -124,6 +131,10 @@ class CalendarHome extends \Sabre\CalDAV\CalendarHome {
 		if ($this->caldavBackend instanceof SubscriptionSupport) {
 			foreach ($this->caldavBackend->getSubscriptionsForUser($this->principalInfo['uri']) as $subscription) {
 				if ($subscription['uri'] === $name) {
+					if ($this->returnCachedSubscriptions) {
+						return new CachedSubscription($this->caldavBackend, $subscription);
+					}
+
 					return new Subscription($this->caldavBackend, $subscription);
 				}
 			}
@@ -141,5 +152,12 @@ class CalendarHome extends \Sabre\CalDAV\CalendarHome {
 	function calendarSearch(array $filters, $limit=null, $offset=null) {
 		$principalUri = $this->principalInfo['uri'];
 		return $this->caldavBackend->calendarSearch($principalUri, $filters, $limit, $offset);
+	}
+
+	/**
+	 *
+	 */
+	public function enableCachedSubscriptionsForThisRequest() {
+		$this->returnCachedSubscriptions = true;
 	}
 }
