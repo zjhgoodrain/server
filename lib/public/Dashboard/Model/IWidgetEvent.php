@@ -7,8 +7,8 @@
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
  *
- * @author regio iT gesellschaft für informationstechnologie mbh
- * @copyright regio iT 2017
+ * @author Maxence Lange <maxence@artificial-owl.com>
+ * @copyright 2018, Maxence Lange <maxence@artificial-owl.com>
  * @license GNU AGPL version 3 or any later version
  *
  * This program is free software: you can redistribute it and/or modify
@@ -29,29 +29,33 @@
 namespace OCP\Dashboard\Model;
 
 
-interface IWidgetSettings {
+interface IWidgetEvent {
+
+
+	const BROADCAST_USER = 'user';
+	const BROADCAST_GROUP = 'group';
+	const BROADCAST_GLOBAL = 'global';
 
 
 	/**
-	 * IWidgetSettings constructor.
+	 * WidgetEvent constructor.
 	 *
-	 * @param string $userId
 	 * @param string $widgetId
 	 */
-	public function __construct(string $widgetId, string $userId);
+	public function __construct(string $widgetId);
 
 
 	/**
-	 * @return string
+	 * @return int
 	 */
-	public function getUserId(): string;
+	public function getId(): int;
 
 	/**
-	 * @param string $userId
+	 * @param int $id
 	 *
 	 * @return $this
 	 */
-	public function setUserId(string $userId): IWidgetSettings;
+	public function setId(int $id): IWidgetEvent;
 
 
 	/**
@@ -64,46 +68,63 @@ interface IWidgetSettings {
 	 *
 	 * @return $this
 	 */
-	public function setWidgetId(string $widgetId): IWidgetSettings;
+	public function setWidgetId(string $widgetId): IWidgetEvent;
+
+
+	/**
+	 * @return string
+	 */
+	public function getBroadcast(): string;
+
+	/**
+	 * @return string
+	 */
+	public function getRecipient(): string;
+
+	/**
+	 * @param string $broadcast
+	 * @param string $recipient
+	 *
+	 * @return $this
+	 */
+	public function setRecipient(string $broadcast, string $recipient = ''): IWidgetEvent;
 
 
 	/**
 	 * @return array
 	 */
-	public function getPosition(): array;
+	public function getPayload(): array;
 
 	/**
-	 * @param array $position
+	 * @param array $payload
 	 *
 	 * @return $this
 	 */
-	public function setPosition(array $position): IWidgetSettings;
-
+	public function setPayload(array $payload): IWidgetEvent;
 
 	/**
-	 * @return array
+	 * @return string
 	 */
-	public function getSettings(): array;
+	public function getUniqueId(): string;
 
 	/**
-	 * @param array $settings
+	 * @param string $uniqueId
 	 *
 	 * @return $this
 	 */
-	public function setSettings(array $settings): IWidgetSettings;
+	public function setUniqueId(string $uniqueId): IWidgetEvent;
 
 
 	/**
-	 * @return bool
+	 * @return int
 	 */
-	public function isEnabled(): bool;
+	public function getCreation(): int;
 
 	/**
-	 * @param bool $enabled
+	 * @param int $creation
 	 *
 	 * @return $this
 	 */
-	public function setEnabled(bool $enabled): IWidgetSettings;
-
+	public function setCreation(int $creation): IWidgetEvent;
 
 }

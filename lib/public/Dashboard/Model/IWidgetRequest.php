@@ -1,4 +1,6 @@
-<?php
+<?php declare(strict_types=1);
+
+
 /**
  * Nextcloud - Dashboard App
  *
@@ -37,59 +39,59 @@ interface IWidgetRequest {
 	 *
 	 * @param string $widgetId
 	 */
-	public function __construct($widgetId);
+	public function __construct(string $widgetId);
 
 
 	/**
 	 * @return string
 	 */
-	public function getWidgetId();
+	public function getWidgetId(): string;
 
 	/**
 	 * @param string $widgetId
 	 *
 	 * @return $this;
 	 */
-	public function setWidgetId($widgetId);
+	public function setWidgetId(string $widgetId): IWidgetRequest;
 
 
 	/**
 	 * @return IDashboardWidget
 	 */
-	public function getWidget();
+	public function getWidget(): IDashboardWidget;
 
 	/**
 	 * @param IDashboardWidget $widget
 	 *
 	 * @return $this
 	 */
-	public function setWidget($widget);
+	public function setWidget(IDashboardWidget $widget): IWidgetRequest;
 
 
 	/**
 	 * @return string
 	 */
-	public function getRequest();
+	public function getRequest(): string;
 
 	/**
 	 * @param string $request
 	 *
 	 * @return $this
 	 */
-	public function setRequest($request);
+	public function setRequest(string $request): IWidgetRequest;
 
 
 	/**
 	 * @return array
 	 */
-	public function getResult();
+	public function getResult(): array;
 
 	/**
 	 * @param array $result
 	 *
 	 * @return $this
 	 */
-	public function setResult($result);
+	public function setResult(array $result): IWidgetRequest;
 
 	/**
 	 * @param string $key
@@ -97,6 +99,6 @@ interface IWidgetRequest {
 	 *
 	 * @return $this
 	 */
-	public function addResult($key, $result);
+	public function addResult(string $key, $result): IWidgetRequest;
 
 }
