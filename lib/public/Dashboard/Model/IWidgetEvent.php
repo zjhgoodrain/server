@@ -38,14 +38,6 @@ interface IWidgetEvent {
 
 
 	/**
-	 * WidgetEvent constructor.
-	 *
-	 * @param string $widgetId
-	 */
-	public function __construct(string $widgetId);
-
-
-	/**
 	 * @return int
 	 */
 	public function getId(): int;
