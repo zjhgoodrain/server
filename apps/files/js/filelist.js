@@ -274,15 +274,19 @@
 
 
 			if (_.isUndefined(options.detailsViewEnabled) || options.detailsViewEnabled) {
-				this._detailsView = new OCA.Files.DetailsView();
+				if (OCA.Files.App.detailsView === null) {
+					OCA.Files.App.detailsView = new OCA.Files.DetailsView();
+					OCA.Files.App.detailsView.initialize();
+
+					this._detailsView = OCA.Files.App.detailsView;
+					this._initFileActions(options.fileActions);
+					this._detailsView.addDetailView(new OCA.Files.MainFileInfoDetailView({fileList: this, fileActions: this.fileActions}));
+					OC.Plugins.attach('OCA.Files.FileList', this);
+				}
+				this._detailsView = OCA.Files.App.detailsView;
 				this._detailsView.$el.addClass('disappear');
 			}
-
 			this._initFileActions(options.fileActions);
-
-			if (this._detailsView) {
-				this._detailsView.addDetailView(new OCA.Files.MainFileInfoDetailView({fileList: this, fileActions: this.fileActions}));
-			}
 
 			this.files = [];
 			this._selectedFiles = {};
@@ -373,9 +377,6 @@
 					this.setupUploadEvents(this._uploader);
 				}
 			}
-
-
-			OC.Plugins.attach('OCA.Files.FileList', this);
 		},
 
 		/**
@@ -388,9 +389,7 @@
 			if (this._newButton) {
 				this._newButton.remove();
 			}
-			if (this._detailsView) {
-				this._detailsView.remove();
-			}
+
 			// TODO: also unregister other event handlers
 			this.fileActions.off('registerAction', this._onFileActionsUpdated);
 			this.fileActions.off('setDefault', this._onFileActionsUpdated);
@@ -3327,7 +3326,7 @@
 		 * Register a tab view to be added to all views
 		 */
 		registerTabView: function(tabView) {
-			if (this._detailsView) {
+			if (this._detailsView && (OCA.Files.App.fileList === null || OCA.Files.App.fileList === this)) {
 				this._detailsView.addTabView(tabView);
 			}
 		},
@@ -3336,7 +3335,7 @@
 		 * Register a detail view to be added to all views
 		 */
 		registerDetailView: function(detailView) {
-			if (this._detailsView) {
+			if (this._detailsView && (OCA.Files.App.fileList === null || OCA.Files.App.fileList === this)) {
 				this._detailsView.addDetailView(detailView);
 			}
 		},
