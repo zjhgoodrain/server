@@ -17,5 +17,7 @@ failingTests.forEach(test => {
 	warn(test.fullTitle)
 })
 
+warn('ui-regression');
+
 
 
