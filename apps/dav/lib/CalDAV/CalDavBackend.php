@@ -1691,7 +1691,11 @@ class CalDavBackend extends AbstractBackend implements SyncSupport, Subscription
 			}
 		} else {
 			// No synctoken supplied, this is the initial sync.
-			$query = "SELECT `uri` FROM `*PREFIX*calendarobjects` WHERE `calendarid` = ?";
+			$query = "SELECT `uri` FROM `*PREFIX*calendarobjects` WHERE `calendarid` = ? ORDER BY `synctoken`";
+			if ($limit>0) {
+				$query.= " LIMIT " . (int)$limit;
+			}
+
 			$stmt = $this->db->prepare($query);
 			$stmt->execute([$calendarId]);
 
