@@ -118,6 +118,7 @@ use OC\SystemTag\ManagerFactory as SystemTagManagerFactory;
 use OC\Tagging\TagMapper;
 use OC\Template\JSCombiner;
 use OC\Template\SCSSCacher;
+use OC\Dashboard\DashboardManager;
 use OCA\Theming\ImageManager;
 use OCA\Theming\ThemingDefaults;
 
@@ -125,6 +126,7 @@ use OCP\App\IAppManager;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\Collaboration\AutoComplete\IManager;
 use OCP\Contacts\ContactsMenu\IContactsStore;
+use OCP\Dashboard\IDashboardManager;
 use OCP\Defaults;
 use OCA\Theming\Util;
 use OCP\Federation\ICloudFederationFactory;
@@ -1177,6 +1179,8 @@ class Server extends ServerContainer implements IServerContainer {
 			);
 		});
 		$this->registerAlias(IContactsStore::class, ContactsStore::class);
+
+		$this->registerAlias(IDashboardManager::class, Dashboard\DashboardManager::class);
 
 		$this->connectDispatcher();
 	}

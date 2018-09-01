@@ -27,109 +27,63 @@ declare(strict_types=1);
  *
  */
 
-namespace OCP\Dashboard\Model;
 
+namespace OCP\Dashboard;
+
+
+use OCP\Dashboard\Exceptions\DashboardAppNotAvailableException;
+use OCP\Dashboard\Model\IWidgetSettings;
 
 /**
  * @since 15.0.0
  *
- * Interface IWidgetSettings
+ * Interface IDashboardManager
  *
- * @package OCP\Dashboard\Model
+ * @package OCP\Dashboard
  */
-interface IWidgetSettings {
-
+interface IDashboardManager {
 
 	/**
 	 * @since 15.0.0
 	 *
-	 * IWidgetSettings constructor.
-	 *
-	 * @param string $userId
 	 * @param string $widgetId
-	 */
-	public function __construct(string $widgetId, string $userId);
-
-
-	/**
-	 * @since 15.0.0
-	 *
-	 * @return string
-	 */
-	public function getUserId(): string;
-
-	/**
-	 * @since 15.0.0
-	 *
 	 * @param string $userId
 	 *
-	 * @return $this
+	 * @throws DashboardAppNotAvailableException
+	 * @return IWidgetSettings
 	 */
-	public function setUserId(string $userId): IWidgetSettings;
-
+	public function getWidgetSettings(string $widgetId, string $userId): IWidgetSettings;
 
 	/**
 	 * @since 15.0.0
 	 *
-	 * @return string
-	 */
-	public function getWidgetId(): string;
-
-	/**
 	 * @param string $widgetId
-	 *
-	 * @return $this
+	 * @param array $users
+	 * @param array $payload
+	 * @param string $uniqueId
+	 * @throws DashboardAppNotAvailableException
 	 */
-	public function setWidgetId(string $widgetId): IWidgetSettings;
-
+	public function createUsersEvent(string $widgetId, array $users, array $payload, string $uniqueId = '');
 
 	/**
 	 * @since 15.0.0
 	 *
-	 * @return array
+	 * @param string $widgetId
+	 * @param array $groups
+	 * @param array $payload
+	 * @param string $uniqueId
+	 * @throws DashboardAppNotAvailableException
 	 */
-	public function getPosition(): array;
+	public function createGroupsEvent(string $widgetId, array $groups, array $payload, string $uniqueId = '');
 
 	/**
 	 * @since 15.0.0
 	 *
-	 * @param array $position
-	 *
-	 * @return $this
+	 * @param string $widgetId
+	 * @param array $payload
+	 * @param string $uniqueId
+	 * @throws DashboardAppNotAvailableException
 	 */
-	public function setPosition(array $position): IWidgetSettings;
-
-
-	/**
-	 * @since 15.0.0
-	 *
-	 * @return array
-	 */
-	public function getSettings(): array;
-
-	/**
-	 * @param array $settings
-	 *
-	 * @return $this
-	 */
-	public function setSettings(array $settings): IWidgetSettings;
-
-
-	/**
-	 * @since 15.0.0
-	 *
-	 * @return bool
-	 */
-	public function isEnabled(): bool;
-
-	/**
-	 * @since 15.0.0
-	 *
-	 * @param bool $enabled
-	 *
-	 * @return $this
-	 */
-	public function setEnabled(bool $enabled): IWidgetSettings;
-
+	public function createGlobalEvent(string $widgetId, array $payload, string $uniqueId = '');
 
 }

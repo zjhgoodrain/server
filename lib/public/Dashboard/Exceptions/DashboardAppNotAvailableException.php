@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 
 /**
- * Nextcloud - Dashboard App
+ * Nextcloud - Dashboard app
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -27,75 +27,15 @@ declare(strict_types=1);
  *
  */
 
-
-namespace OCP\Dashboard;
-
-
-use OCP\Dashboard\Model\IWidgetRequest;
-use OCP\Dashboard\Model\IWidgetSettings;
+namespace OCP\Dashboard\Exceptions;
 
 /**
  * @since 15.0.0
  *
- * Interface IDashboardWidget
+ * Class DashboardAppNotAvailableException
  *
- * @package OCP\Dashboard
+ * @package OCP\Dashboard\Exceptions
  */
-interface IDashboardWidget {
-
-	/**
-	 * @since 15.0.0
-	 *
-	 * @return string
-	 */
-	public function getId(): string;
-
-
-	/**
-	 * @since 15.0.0
-	 *
-	 * @return string
-	 */
-	public function getName(): string;
-
-
-	/**
-	 * @since 15.0.0
-	 *
-	 * @return string
-	 */
-	public function getDescription(): string;
-
-
-	/**
-	 * @since 15.0.0
-	 *
-	 * @return array
-	 */
-	public function getTemplate(): array;
-
-
-	/**
-	 * @since 15.0.0
-	 *
-	 * @param IWidgetSettings $settings
-	 */
-	public function loadWidget(IWidgetSettings $settings);
-
-
-	/**
-	 * @since 15.0.0
-	 *
-	 * @return array
-	 */
-	public function widgetSetup(): array;
-
-
-	/**
-	 * @since 15.0.0
-	 *
-	 * @param IWidgetRequest $request
-	 */
-	public function requestWidget(IWidgetRequest $request);
-
+class DashboardAppNotAvailableException extends \Exception {
 }
+

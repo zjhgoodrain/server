@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 
 /**
@@ -29,6 +30,13 @@
 namespace OCP\Dashboard\Model;
 
 
+/**
+ * @since 15.0.0
+ *
+ * Interface IWidgetEvent
+ *
+ * @package OCP\Dashboard\Model
+ */
 interface IWidgetEvent {
 
 
@@ -38,56 +46,71 @@ interface IWidgetEvent {
 
 
 	/**
+	 * @since 15.0.0
+	 *
 	 * @return int
 	 */
 	public function getId(): int;
 
 	/**
+	 * @since 15.0.0
+	 *
 	 * @param int $id
 	 *
 	 * @return $this
 	 */
 	public function setId(int $id): IWidgetEvent;
 
-
 	/**
+	 * @since 15.0.0
+	 *
 	 * @return string
 	 */
 	public function getWidgetId(): string;
 
 	/**
+	 * @since 15.0.0
+	 *
 	 * @param string $widgetId
 	 *
 	 * @return $this
 	 */
 	public function setWidgetId(string $widgetId): IWidgetEvent;
 
-
 	/**
+	 * @since 15.0.0
+	 *
 	 * @return string
 	 */
 	public function getBroadcast(): string;
 
 	/**
+	 * @since 15.0.0
+	 *
 	 * @return string
 	 */
 	public function getRecipient(): string;
 
 	/**
+	 * @since 15.0.0
+	 *
 	 * @param string $broadcast
 	 * @param string $recipient
 	 *
 	 * @return $this
 	 */
-	public function setRecipient(string $broadcast, string $recipient = ''): IWidgetEvent;
-
+	public function setRecipient(string $broadcast, string $recipient): IWidgetEvent;
 
 	/**
+	 * @since 15.0.0
+	 *
 	 * @return array
 	 */
 	public function getPayload(): array;
 
 	/**
+	 * @since 15.0.0
+	 *
 	 * @param array $payload
 	 *
 	 * @return $this
@@ -95,24 +118,31 @@ interface IWidgetEvent {
 	public function setPayload(array $payload): IWidgetEvent;
 
 	/**
+	 * @since 15.0.0
+	 *
 	 * @return string
 	 */
 	public function getUniqueId(): string;
 
 	/**
+	 * @since 15.0.0
+	 *
 	 * @param string $uniqueId
 	 *
 	 * @return $this
 	 */
 	public function setUniqueId(string $uniqueId): IWidgetEvent;
 
-
 	/**
+	 * @since 15.0.0
+	 *
 	 * @return int
 	 */
 	public function getCreation(): int;
 
 	/**
+	 * @since 15.0.0
+	 *
 	 * @param int $creation
 	 *
 	 * @return $this

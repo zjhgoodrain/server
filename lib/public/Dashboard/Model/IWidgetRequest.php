@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 
 /**
@@ -31,62 +32,83 @@ namespace OCP\Dashboard\Model;
 
 use OCP\Dashboard\IDashboardWidget;
 
+
+/**
+ * @since 15.0.0
+ *
+ * Interface IWidgetRequest
+ *
+ * @package OCP\Dashboard\Model
+ */
 interface IWidgetRequest {
 
-
 	/**
+	 * @since 15.0.0
+	 *
 	 * IWidgetRequest constructor.
 	 *
 	 * @param string $widgetId
 	 */
 	public function __construct(string $widgetId);
 
-
 	/**
+	 * @since 15.0.0
+	 *
 	 * @return string
 	 */
 	public function getWidgetId(): string;
 
 	/**
+	 * @since 15.0.0
+	 *
 	 * @param string $widgetId
 	 *
 	 * @return $this;
 	 */
 	public function setWidgetId(string $widgetId): IWidgetRequest;
 
-
 	/**
+	 * @since 15.0.0
+	 *
 	 * @return IDashboardWidget
 	 */
 	public function getWidget(): IDashboardWidget;
 
 	/**
+	 * @since 15.0.0
+	 *
 	 * @param IDashboardWidget $widget
 	 *
 	 * @return $this
 	 */
 	public function setWidget(IDashboardWidget $widget): IWidgetRequest;
 
-
 	/**
+	 * @since 15.0.0
+	 *
 	 * @return string
 	 */
 	public function getRequest(): string;
 
 	/**
+	 * @since 15.0.0
+	 *
 	 * @param string $request
 	 *
 	 * @return $this
 	 */
 	public function setRequest(string $request): IWidgetRequest;
 
-
 	/**
+	 * @since 15.0.0
+	 *
 	 * @return array
 	 */
 	public function getResult(): array;
 
 	/**
+	 * @since 15.0.0
+	 *
 	 * @param array $result
 	 *
 	 * @return $this
@@ -94,6 +116,8 @@ interface IWidgetRequest {
 	public function setResult(array $result): IWidgetRequest;
 
 	/**
+	 * @since 15.0.0
+	 *
 	 * @param string $key
 	 * @param string|array $result
 	 *
