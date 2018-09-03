@@ -124,8 +124,7 @@ class DashboardManager implements IDashboardManager {
 	 *
 	 * @throws DashboardAppNotAvailableException
 	 */
-	public function createGlobalEvent(string $widgetId, array $payload, string $uniqueId = ''
-	) {
+	public function createGlobalEvent(string $widgetId, array $payload, string $uniqueId = '') {
 		/** @var \OCA\Dashboard\Service\EventsService $eventsService */
 		$eventsService = $this->getService('\OCA\Dashboard\Service\EventsService');
 		$eventsService->createGlobalEvent($widgetId, $payload, $uniqueId);
